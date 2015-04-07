@@ -1,0 +1,175 @@
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 03/04/2015  Time 18:52:31   Page     1                
+0Invocation parameters:                                                                                                              
+  NOX                                                                                                                                
+0Options in effect:                                                                                                                  
+  NOADATA                                                                                                                            
+    ADV                                                                                                                              
+    QUOTE                                                                                                                            
+    ARITH(COMPAT)                                                                                                                    
+  NOAWO                                                                                                                              
+  NOBLOCK0                                                                                                                           
+    BUFSIZE(4096)                                                                                                                    
+  NOCICS                                                                                                                             
+    CODEPAGE(1140)                                                                                                                   
+  NOCOMPILE(S)                                                                                                                       
+  NOCURRENCY                                                                                                                         
+    DATA(31)                                                                                                                         
+  NODATEPROC                                                                                                                         
+    DBCS                                                                                                                             
+  NODECK                                                                                                                             
+  NODIAGTRUNC                                                                                                                        
+  NODLL                                                                                                                              
+  NODUMP                                                                                                                             
+  NODYNAM                                                                                                                            
+  NOEXIT                                                                                                                             
+  NOEXPORTALL                                                                                                                        
+  NOFASTSRT                                                                                                                          
+    FLAG(I,I)                                                                                                                        
+  NOFLAGSTD                                                                                                                          
+    INTDATE(ANSI)                                                                                                                    
+    LANGUAGE(EN)                                                                                                                     
+  NOLIB                                                                                                                              
+    LINECOUNT(60)                                                                                                                    
+  NOLIST                                                                                                                             
+  NOMAP                                                                                                                              
+  NOMDECK                                                                                                                            
+  NONAME                                                                                                                             
+    NSYMBOL(NATIONAL)                                                                                                                
+  NONUMBER                                                                                                                           
+    NUMPROC(NOPFD)                                                                                                                   
+    OBJECT                                                                                                                           
+  NOOFFSET                                                                                                                           
+  NOOPTIMIZE                                                                                                                         
+    OUTDD(SYSOUT)                                                                                                                    
+    PGMNAME(COMPAT)                                                                                                                  
+    RENT                                                                                                                             
+    RMODE(AUTO)                                                                                                                      
+    SEQUENCE                                                                                                                         
+    SIZE(MAX)                                                                                                                        
+    SOURCE                                                                                                                           
+    SPACE(1)                                                                                                                         
+  NOSQL                                                                                                                              
+    SQLCCSID                                                                                                                         
+  NOSSRANGE                                                                                                                          
+  NOTERM                                                                                                                             
+  NOTEST                                                                                                                             
+  NOTHREAD                                                                                                                           
+    TRUNC(STD)                                                                                                                       
+  NOVBREF                                                                                                                            
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0                         Date 03/04/2015  Time 18:52:31   Page     2                
+0 NOWORD                                                                                                                             
+    XMLPARSE(XMLSS)                                                                                                                  
+  NOXREF                                                                                                                             
+    YEARWINDOW(1900)                                                                                                                 
+    ZWB                                                                                                                              
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WALLYLST  Date 03/04/2015  Time 18:52:31   Page     3                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000001                IDENTIFICATION DIVISION.                                         00000500                                   
+   000002                PROGRAM-ID. WALLYLST.                                            00000600                                   
+   000003               *  WRITTEN BY DOMONICK MACK                                                                                  
+   000004               *  THIS PROGRAM PRINTS OUT INVENTTORY LIST                                                                   
+   000005                                                                                                                            
+   000006                ENVIRONMENT DIVISION.                                                                                       
+   000007                INPUT-OUTPUT SECTION.                                                                                       
+   000008                FILE-CONTROL.                                                                                               
+   000009                    SELECT INV-FILE                                                                                         
+   000010                         ASSIGN TO FILEIN.                                                                                  
+   000011                    SELECT WALLY-RPT                                                                                        
+   000012                         ASSIGN TO FILEOUT.                                                                                 
+   000013                DATA DIVISION.                                                                                              
+   000014                FILE SECTION.                                                                                               
+   000015                FD INV-FILE.                                                                                                
+                                                                                                                                     
+ ==000015==> IGYGR1216-I A "RECORDING MODE" of "F" was assumed for file "INV-FILE".                                                  
+                                                                                                                                     
+   000016                01 INV-RECORD    PIC X(40).                                                                                 
+   000017                FD WALLY-RPT.                                                                                               
+                                                                                                                                     
+ ==000017==> IGYGR1216-I A "RECORDING MODE" of "F" was assumed for file "WALLY-RPT".                                                 
+                                                                                                                                     
+   000018                01 INV-OFF       PIC X(100).                                                                                
+   000019                WORKING-STORAGE SECTION.                                                                                    
+   000020                01 WS-SWITCHES.                                                                                             
+   000021                    05 WS-EOF    PIC X(3).                                                                                  
+   000022                01 IR-INV-RECORD.                                                                                           
+   000023                    05 IR-NAME   PIC X(15).                                                                                 
+   000024                    05 IR-CODE   PIC 99999.                                                                                 
+   000025                    05 IR-PRICE  PIC 999V99.                                                                                
+   000026                    05 IR-DEPT   PIC X(15).                                                                                 
+   000027                01 IO-INV-OFF.                                                                                              
+   000028                    05           PIC X(7) VALUE SPACES.                                                                     
+   000029                    05 IO-NAME   PIC X(15).                                                                                 
+   000030                    05           PIC X(7) VALUE SPACES.                                                                     
+   000031                    05 IO-CODE   PIC 99999.                                                                                 
+   000032                    05           PIC X(7) VALUE SPACES.                                                                     
+   000033                    05 IO-PRICE  PIC $**9.99.                                                                               
+   000034                    05           PIC X(7) VALUE SPACES.                                                                     
+   000035                    05 IO-DEPT   PIC X(15).                                                                                 
+   000036                PROCEDURE DIVISION.                                                                                         
+   000037                100-HOUSEKEEPING.                                                                                           
+   000038                    OPEN INPUT INV-FILE                                                                                     
+   000039                        OUTPUT WALLY-RPT                                                                                    
+   000040                    MOVE 'NO' TO WS-EOF                                                                                     
+   000041                    PERFORM UNTIL WS-EOF = 'YES'                                                                            
+   000042      1               READ INV-FILE                                                                                         
+   000043      1                    INTO IR-INV-RECORD                                                                               
+   000044      1                 AT END                                                                                              
+   000045      2                    MOVE 'YES' TO WS-EOF                                                                             
+   000046      1                 NOT AT END                                                                                          
+   000047      2                    PERFORM 200-PROCESS                                                                              
+   000048      1               END-READ                                                                                              
+   000049                    END-PERFORM                                                                                             
+   000050                    CLOSE INV-FILE                                                                                          
+   000051                         WALLY-RPT                                                                                          
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WALLYLST  Date 03/04/2015  Time 18:52:31   Page     4                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+0  000052                    STOP RUN                                                                                                
+   000053                    .                                                                                                       
+   000054                200-PROCESS.                                                                                                
+   000055                    MOVE IR-NAME TO IO-NAME                                                                                 
+   000056                    MOVE IR-CODE TO IO-CODE                                                                                 
+   000057                    MOVE IR-PRICE TO IO-PRICE                                                                               
+   000058                    MOVE IR-DEPT TO IO-DEPT                                                                                 
+   000059                    MOVE IO-INV-OFF TO INV-OFF                                                                              
+   000060                    WRITE INV-OFF                                                                                           
+   000061                       AFTER ADVANCING 2 LINES                                                                              
+   000062                    .                                                                                                       
+1PP 5655-S71 IBM Enterprise COBOL for z/OS  4.2.0               WALLYLST  Date 03/04/2015  Time 18:52:31   Page     5                
+0LineID  Message code  Message text                                                                                                  
+                                                                                                                                     
+     15  IGYGR1216-I   A "RECORDING MODE" of "F" was assumed for file "INV-FILE".                                                    
+                                                                                                                                     
+     17  IGYGR1216-I   A "RECORDING MODE" of "F" was assumed for file "WALLY-RPT".                                                   
+-Messages    Total    Informational    Warning    Error    Severe    Terminating                                                     
+0Printed:       2           2                                                                                                        
+-* Statistics for COBOL program WALLYLST:                                                                                            
+ *    Source records = 62                                                                                                            
+ *    Data Division statements = 14                                                                                                  
+ *    Procedure Division statements = 14                                                                                             
+0End of compilation 1,  program WALLYLST,  highest severity 0.                                                                       
+0Return code 0                                                                                                                       
+0       HEADPHONES            45875       $*75.00       AUDIO                                        
+0       GAME                  45996       $*59.99       GAMING                                       
+0       TV                    45838       $220.00       ENTERTAINMENT                                
+0       CD                    64552       $**5.00       MUSIC                                        
+0       PRINTER               76757       $*89.99       OFFICE                                       
+0       LAPTOP                85945       $199.99       OFFICE                                       
+0       CELLPHONE             95667       $200.00       MOBILE                                       
+0       TOWEL                 34678       $*15.99       BATH                                         
+0       PILLOW                38795       $*12.99       HOME                                         
+0       LAMP                  93755       $*29.00       HOME                                         
+0       NECKLACE              59820       $*55.00       JEWELRY                                      
+0       WATCH                 29529       $115.00       JEWELRY                                      
+0       BIKE                  01203       $210.00       TOYS                                         
+0       SCOOTER               02387       $*75.00       TOYS                                         
+0       IPHONE CHARGER        12159       $*17.99       ELECTRONICS                                  
+0       COKE-COLA             03156       $**3.99       GROCERY                                      
+0       IPOD                  11987       $148.99       ELECTRONICS                                  
+0       TYLENOL               02562       $**8.95       PHARMACY                                     
+0       FOOTBALL              25841       $*14.99       SPORTS                                       
+0       CALCULATOR            13645       $114.88       OFFICE                                       
+0       TOWELRACK             05396       $145.20       BATH                                         
+0       FOOTBALL              55593       $191.20       SPORTS                                       
+0       LIMELOTION            94112       $*88.80       BATH                                         
+0       WHITERUG              39895       $559.90       HOME                                         
+0       COFFEEMUG             44300       $295.60       HOME                                         
